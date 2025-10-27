@@ -64,12 +64,13 @@ body {
 .screen {
     display: none;
     animation: fadeIn 0.5s ease-in-out;
-    height: 100%; /* Asegura que la pantalla ocupe el espacio */
-     flex-grow: 1; /* Permite que el elemento ocupe el espacio disponible */
-    min-height: 0; /* MUY IMPORTANTE en flexbox para que overflow funcione */
-    overflow-y: auto; /* ¡Permite el scroll vertical si el contenido excede su altura! */
-    -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
-    padding-bottom: 20px; /* Un poco de espacio al final */
+    position: absolute; /* Para que cada pantalla se posicione de forma independiente */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ocupa el 100% de la altura de su padre (.app-container) */
+    box-sizing: border-box; /* Para que el padding no añada altura extra */
+    padding: 30px; /* Añade padding aquí para que el contenido no pegue a los bordes y deje espacio */
     justify-content: center;
     align-items: center;
     flex-direction: column;
