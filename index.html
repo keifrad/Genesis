@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amorcito</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Para los efectos de celebración, usaremos una librería de JS, pero la incluiremos en el script.js -->
+     <link rel="manifest" href="manifest.json">
+    <!-- Para que iOS (iPhone) también lo reconozca si lo abriera allí -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amorcito App">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div id="snow-container"></div> <!-- Contenedor para el efecto de nieve -->
+
+    <div class="app-container">
+        <header id="welcome-screen" class="screen active">
+            <h1 class="welcome-title">Bienvenida</h1>
+            <div class="snowman">
+                <div class="body-part top"></div>
+                <div class="body-part middle"></div>
+                <div class="body-part bottom"></div>
+                <div class="hat"></div>
+                <div class="nose"></div>
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="scarf"></div>
+            </div>
+            <p class="welcome-message">¡Un espacio especial solo para ti, mi amor!</p>
+            <button id="start-app-button" class="main-button">Entrar</button>
+        </header>
+
+        <main id="main-menu" class="screen">
+            <h2 class="menu-title">Menú Principal</h2>
+            <div class="menu-options">
+                <button class="menu-button" data-target="listas">
+                    <i class="fas fa-clipboard-list"></i> Listas
+                </button>
+                <button class="menu-button" data-target="comidas">
+                    <i class="fas fa-utensils"></i> Comidas
+                </button>
+                <button class="menu-button" data-target="quehaceres">
+                    <i class="fas fa-broom"></i> Quehaceres/Tareas
+                </button>
+                <button class="menu-button" data-target="promesas">
+                    <i class="fas fa-heartbeat"></i> Promesas
+                </button>
+            </div>
+        </main>
+
+        <!-- PANTALLAS DE OPCIONES -->
+
+        <!-- Opción 1: Listas -->
+        <section id="listas-screen" class="screen">
+            <h2 class="screen-title">Tus Listas del Día</h2>
+            <div class="option-group">
+                <h3>Lista de la mañana</h3>
+                <div class="buttons-row">
+                    <button class="action-button confirm" data-list="manana">Confirmar</button>
+                    <button class="action-button reject" data-list="manana">Rechazar</button>
+                </div>
+            </div>
+            <div class="option-group">
+                <h3>Lista de la tarde</h3>
+                <div class="buttons-row">
+                    <button class="action-button confirm" data-list="tarde">Confirmar</button>
+                    <button class="action-button reject" data-list="tarde">Rechazar</button>
+                </div>
+            </div>
+            <div class="option-group">
+                <h3>Lista nocturna</h3>
+                <div class="buttons-row">
+                    <button class="action-button confirm" data-list="noche">Confirmar</button>
+                    <button class="action-button reject" data-list="noche">Rechazar</button>
+                </div>
+            </div>
+            <button id="send-lists-results" class="main-button">Enviar Resultados</button>
+            <div id="lists-result" class="result-message"></div>
+            <button class="back-button" data-target="main-menu"><i class="fas fa-arrow-left"></i> Volver al Menú</button>
+        </section>
+
+        <!-- Opción 2: Comidas -->
+        <section id="comidas-screen" class="screen">
+            <h2 class="screen-title">Tus Comidas del Día</h2>
+            <div class="option-group">
+                <h3>Desayuno bien hecho para las energías</h3>
+                <div class="buttons-row">
+                    <button class="action-button confirm" data-meal="desayuno">Confirmar</button>
+                    <button class="action-button reject" data-meal="desayuno">Rechazar</button>
+                </div>
+            </div>
+            <div class="option-group">
+                <h3>Almuerzo para existir</h3>
+                <div class="buttons-row">
+                    <button class="action-button confirm" data-meal="almuerzo">Confirmar</button>
+                    <button class="action-button reject" data-meal="almuerzo">Rechazar</button>
+                </div>
+            </div>
+            <div class="option-group">
+                <h3>Cena para dormir bien</h3>
+                <div class="buttons-row">
+                    <button class="action-button confirm" data-meal="cena">Confirmar</button>
+                    <button class="action-button reject" data-meal="cena">Rechazar</button>
+                </div>
+            </div>
+            <button id="send-meals-results" class="main-button">Enviar Resultados</button>
+            <div id="meals-result" class="result-message"></div>
+            <button class="back-button" data-target="main-menu"><i class="fas fa-arrow-left"></i> Volver al Menú</button>
+        </section>
+
+        <!-- Opción 3: Quehaceres/Tareas -->
+        <section id="quehaceres-screen" class="screen">
+            <h2 class="screen-title">Tus Tareas</h2>
+            <div class="option-group">
+                <h3>¿Haz hecho tus tareas?</h3>
+                <button class="action-button big" id="task-yes">Sí</button>
+                <button class="action-button big" id="task-no">No</button>
+            </div>
+            <div id="task-confirmation" class="hidden">
+                <h3>¿¡SEGUUUURA!? 👀🤔</h3>
+                <button class="action-button big" id="task-sure-yes">Sii, segura</button>
+                <button class="action-button big" id="task-sure-no">No...</button>
+            </div>
+            <div id="task-result" class="result-message"></div>
+            <button class="back-button" data-target="main-menu"><i class="fas fa-arrow-left"></i> Volver al Menú</button>
+        </section>
+
+        <!-- Opción 4: Promesas -->
+        <section id="promesas-screen" class="screen">
+            <h2 class="screen-title">Tus Promesas</h2>
+            <div class="option-group">
+                <h3>¿Haz mantenido tu promesa de cuidar tus emociones, valorarlos/validarlos y tampoco hacerte daño / cuidar de tu salud?</h3>
+                <button class="action-button big" data-promise="emociones">Solo el de las emociones</button>
+                <button class="action-button big" data-promise="salud">Solo el cuidar mi salud</button>
+                <button class="action-button big" data-promise="ninguno">Ninguno...</button>
+                <button class="action-button big" data-promise="todo">Sep, he cumplido todo</button>
+            </div>
+            <div id="promise-result" class="result-message"></div>
+            <button class="back-button" data-target="main-menu"><i class="fas fa-arrow-left"></i> Volver al Menú</button>
+        </section>
+
+    </div> <!-- Fin app-container -->
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script> <!-- Librería de confeti -->
+    <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- ESTE ES EL BLOQUE DE CÓDIGO NUEVO QUE DEBES AÑADIR: -->
+    <script>
+        // Esto verifica si el navegador soporta Service Workers (la mayoría modernos sí lo hacen)
+        if ('serviceWorker' in navigator) {
+            // Cuando la página se ha cargado completamente...
+            window.addEventListener('load', () => {
+                // Intenta registrar nuestro service-worker.js
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        // Si se registra con éxito, verás un mensaje en la consola del navegador
+                        console.log('Service Worker registrado con éxito:', registration);
+                    })
+                    .catch(error => {
+                        // Si falla, también verás un mensaje de error
+                        console.log('Fallo el registro del Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
