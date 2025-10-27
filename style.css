@@ -20,9 +20,13 @@ body {
     max-width: 400px;
     width: 90%;
     position: relative;
-    z-index: 10; /* Para que esté sobre la nieve */
-    overflow: hidden; /* Para que los contenidos no se salgan */
-    min-height: 500px;
+    z-index: 10;
+    /* Estos fueron los cambios anteriores, asegúrate de que estén así */
+    height: auto;
+    max-height: 90vh; /* Para que el app-container no ocupe 100% de la ventana */
+    overflow-y: hidden; /* IMPORTANTE: pon esto en hidden para que el scroll lo haga el screen */
+    -webkit-overflow-scrolling: touch;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,6 +65,11 @@ body {
     display: none;
     animation: fadeIn 0.5s ease-in-out;
     height: 100%; /* Asegura que la pantalla ocupe el espacio */
+     flex-grow: 1; /* Permite que el elemento ocupe el espacio disponible */
+    min-height: 0; /* MUY IMPORTANTE en flexbox para que overflow funcione */
+    overflow-y: auto; /* ¡Permite el scroll vertical si el contenido excede su altura! */
+    -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+    padding-bottom: 20px; /* Un poco de espacio al final */
     justify-content: center;
     align-items: center;
     flex-direction: column;
